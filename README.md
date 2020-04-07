@@ -5,6 +5,9 @@
 ## Description
 A basic chat app made with Node.js and Socket.io. 
 
+<b> The unique feature </b>
+There are some words in which the users can't use.
+
 
 ## What is socket.IO?
 Socket.io is a JavaScript framework for real time web applications. This enables communication between the server and the web clients. This means that the server can push messages to clients. 
