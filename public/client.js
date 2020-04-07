@@ -22,7 +22,14 @@ socket.on("user-disconnected", function (name) {
 messageForm.addEventListener('submit', function (element) {
     element.preventDefault();
     const message = messageInput.value
+    // if (message == "hai") {
+    //     message = "holaaa"
+    // }
     appendMessage(`You: ${message}`)
+
+
+    console.log('daata message!', message)
+
     socket.emit('send-chat-message', message)
     messageInput.value = ''
 })
