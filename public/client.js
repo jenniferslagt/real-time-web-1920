@@ -28,8 +28,6 @@ messageForm.addEventListener('submit', function (element) {
     appendMessage(`You: ${message}`)
 
 
-    console.log('daata message!', message)
-
     socket.emit('send-chat-message', message)
     messageInput.value = ''
 })
