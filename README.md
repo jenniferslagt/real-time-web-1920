@@ -1,9 +1,9 @@
 ## A basic chat app with a feature 
-
+![Schermafbeelding 2020-04-10 om 10 42 09](https://user-images.githubusercontent.com/45489420/78977201-07e37480-7b18-11ea-9930-1a2be7cdbca8.png)
 
 
 ## Description
-A basic chat app made with Node.js and Socket.io. 
+A basic chat app made with Node.js and Socket.io. I also added a extra feature: if a user sends a chat message, there will append a random emoji, which can affect the meaning of a message.
 
 
 ## What is socket.IO?
