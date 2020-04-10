@@ -8,6 +8,8 @@ appendMessage("You joined")
 socket.emit('new-user', name)
 
 socket.on("chat-message", function (data) {
+    console.log('data',
+        data)
     appendMessage(`${name}: ${data.message}`)
 })
 
@@ -22,13 +24,12 @@ socket.on("user-disconnected", function (name) {
 messageForm.addEventListener('submit', function (element) {
     element.preventDefault();
     const message = messageInput.value
-    // if (message == "hai") {
-    //     message = "holaaa"
-    // }
-    appendMessage(`You: ${message}`)
+    const emojis = ["😀", "😅", "🤣", "🙂", "🙃", "😉", "😊", "😇", "😍", "😘", "😜", "🤔", "😐", "😒", "😶", "😏", "🤥", "😌", "🤢", "🤤", "😵", "😎", "🤓", "😕", "😳", "😭", "😱", "😡", "😈", "💩", "🖕"];
+    const pickEmoji = emojis[Math.floor(Math.random() * emojis.length)];
 
+    appendMessage(`You: ${message} ${pickEmoji}`)
 
-    socket.emit('send-chat-message', message)
+    socket.emit('send-chat-message', message + pickEmoji)
     messageInput.value = ''
 })
 
