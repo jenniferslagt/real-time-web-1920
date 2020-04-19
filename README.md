@@ -30,7 +30,8 @@ That will install the module and add the dependency to package.json. Now I added
 
 
 ## Data life cycle
-
+I made a data life cycle to show how the data flows through my app. In this way, it can be easier to understand what happens with the data:
+![datalifecycle](https://user-images.githubusercontent.com/45489420/79700504-73ef7680-8296-11ea-8b64-ad531452bdce.png)
 
 ## Sources 
 [Socket.IO](https://socket.io/)
