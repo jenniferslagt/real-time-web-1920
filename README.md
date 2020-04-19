@@ -29,5 +29,8 @@ That will install the module and add the dependency to package.json. Now I added
 ## Here API
 
 
+## Data life cycle
+
+
 ## Sources 
 [Socket.IO](https://socket.io/)
