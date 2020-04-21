@@ -1,9 +1,10 @@
 ## App
-
-
+![Schermafbeelding 2020-04-21 om 11 32 16](https://user-images.githubusercontent.com/45489420/79850128-c1b5cd00-83c3-11ea-946b-e4d46a933bd0.png)
 
 ## Description
+What if you could draw and ride figures on a map, based on the roads? This is the idea behind my app. A user can draw a route on the map. Thereafter, he can cycle his self-made route! How do you draw a route? If the user clicks on the map, a marker gets displayed. If a second marker is displayed, there will be a polyline between those markers, which creates a route. So you actually have to displaty a marker by every intersection to accomplish this.
 
+This geolocation (longitude and lattitude) of the markers are registrated! In this way the app can calcucate the distance and the route.
 
 
 ## What is socket.IO?
