@@ -30,6 +30,18 @@ That will install the module and add the dependency to package.json. Now I added
 ## Here API
 HERE Technologies is a company that provides mapping and location data and related services to individuals and companies. They also offer a special page for developers. Before using this API, I investigated the possibilities of the API. It turns out that they offer <b> a lot </b> of cool features which can be added to an interactive map! HERE has a strong documentation which guides you through the possiblities. They also offer tutorials and examples. Besides, it's also free to make an account to use their API. 
 
+This are the features that I used:
+* Display a map at a specified location
+* Adding markers on the map
+* Events - Calculating a Location from a Mouse Click
+* Geoshapes - Polyline on the Map
+
+
+## Real-time events
+If users are going to the app, they actually join each other in the same map. This are the real-time events that happen:
+* Users can display markers by clicking on the map.
+* Users can display polylines by adding more than one marker to the map.
+
 
 ## Data life cycle
 I made a data life cycle to show how the data flows through my app. In this way, it can be easier to understand what happens with the data:
