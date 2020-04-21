@@ -12,7 +12,7 @@ Http.listen(3000, () => {
     console.log("Listening at :3000...");
 });
 
-// Store the info of a merker is a array 
+// Store the info of a marker is a array 
 const markers = [];
 
 Socketio.on("connection", socket => {
