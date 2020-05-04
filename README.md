@@ -48,6 +48,8 @@ I made a data life cycle to show how the data flows through my app. In this way,
 <br>
 ![data](https://user-images.githubusercontent.com/45489420/79700623-566edc80-8297-11ea-9e2b-df8e2d335720.png)
 
+## Wishlist
+
 ## Sources 
 [Socket.IO](https://socket.io/)
 
