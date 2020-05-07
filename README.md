@@ -51,6 +51,7 @@ I made a data life cycle to show how the data flows through my app. In this way,
 ![data](https://user-images.githubusercontent.com/45489420/79700623-566edc80-8297-11ea-9e2b-df8e2d335720.png)
 
 ## Wishlist
+* Add an undo / delete button
 * Draw route together? Or separated? Or add a chat?
 * Emit the color to all users?
 * Add a filter? (based on the distance)
