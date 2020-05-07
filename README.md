@@ -41,6 +41,8 @@ This are the features that I used:
 If users are going to the app, they actually join each other in the same map. This are the real-time events that happen:
 * Users can display markers by clicking on the map.
 * Users can display polylines by adding more than one marker to the map.
+* The user can change the color of the polylines
+* The distance of the route is calculated and changes if the user adds markers.
 
 
 ## Data life cycle
