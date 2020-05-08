@@ -2,38 +2,38 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="styles.css">
-    <title>Routeplanner</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Route app</title>
+  <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 
-<body id="capture-map-area" style="margin: 50px;">
-    <button id="red-btn"> red</button>
-    <button id="pink-btn"> pink</button>
-    <button id="blue-btn"> blue</button>
-    <button id="green-btn"> green</button>
-    <button id="yellow-btn"> yellow</button>
-    <button id="black-btn"> black</button>
+<body>
+  <button id="red-btn"> red</button>
+  <button id="pink-btn"> pink</button>
+  <button id="blue-btn"> blue</button>
+  <button id="green-btn"> green</button>
+  <button id="yellow-btn"> yellow</button>
+  <button id="black-btn"> black</button>
 
-    <button id="new-btn"> Draw new route</button>
+  <button id="new-btn"> Draw new route</button>
 
-    <button id="black-btn"> 5 - 10 km</button>
-    <button id="black-btn"> 10 - 15 km</button>
-    <button id="black-btn"> > 15 km </button>
-    <div id="map" style="width: 100vw; height: 100vh;">
-    </div>
-    <div id="map"></div>
-    <div id="panel"></div>
-    <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
-    <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8">
-    </script>
-    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
-    <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js" type="text/javascript" charset="utf-8">
-    </script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
-    <script src="./client.js"></script>
+  <button id="black-btn"> 5 - 10 km</button>
+  <button id="black-btn"> 10 - 15 km</button>
+  <button id="black-btn"> > 15 km </button>
+  <div id="map" style="width: 100vw; height: 100vh;">
+  </div>
+  <div id="map"></div>
+  <div id="panel"></div>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8">
+  </script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js" type="text/javascript" charset="utf-8">
+  </script>
+  <script defer src="/socket.io/socket.io.js"></script>
+  <script defer src="client.js"></script>
 </body>
 
 </html>

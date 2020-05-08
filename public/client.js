@@ -1,3 +1,4 @@
+const socket = io('http://localhost:3000')
 const platform = new H.service.Platform({
     "app_id": "fz16h8uAyopsUA8WDaso",
     "app_code": "APP_CODE_HERE"
@@ -17,8 +18,6 @@ const map = new H.Map(
 
 const mapEvent = new H.mapevents.MapEvents(map);
 const behavior = new H.mapevents.Behavior(mapEvent);
-
-const socket = io("http://localhost:3000");
 
 // Draw a marker when the users "taps"
 socket.on("marker", data => {
