@@ -12,7 +12,17 @@ app.get('/', function (req, res) {
 
 const markers = [];
 
+// Make a event when a user is connected
 io.on("connection", socket => {
+
+    // the event name is "message" en het output is hello world
+    // socket.emit("message", "hello world")
+
+    // get the event with the data from the client on the server
+    // socket.on("test-message", message => {
+    //     console.log("This is the test message", message)
+    // })
+
     for (let i = 0; i < markers.length; i++) {
         socket.emit("marker", markers[i]);
     }
@@ -23,6 +33,10 @@ io.on("connection", socket => {
 });
 
 
-http.listen(process.env.PORT || 3000, function () {
-    console.log("listening on *:3000");
+http.on('listening', function () {
+    console.log('ok, server is running');
+});
+
+http.listen(process.env.PORT || 8181, function () {
+    console.log("listening on *:8181");
 });

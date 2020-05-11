@@ -1,10 +1,11 @@
-const socket = io('http://localhost:3000')
+const socket = io('http://localhost:8181');
+
 const platform = new H.service.Platform({
-    "app_id": "fz16h8uAyopsUA8WDaso",
+    "apikey": "fz16h8uAyopsUA8WDaso",
     "app_code": "APP_CODE_HERE"
 });
 
-// Draw a map
+// Display a map 
 const map = new H.Map(
     document.getElementById("map"),
     platform.createDefaultLayers().normal.map, {
@@ -19,6 +20,16 @@ const map = new H.Map(
 const mapEvent = new H.mapevents.MapEvents(map);
 const behavior = new H.mapevents.Behavior(mapEvent);
 
+// Get an event with data from the server on the client
+// socket.on("message", data => {
+//     console.log('hello world', data);
+// })
+
+// .emit sends information from the client to the server
+// const testMessage = "Hi, send this to the server";
+// socket.emit("test-message", testMessage)
+
+
 // Draw a marker when the users "taps"
 socket.on("marker", data => {
 
@@ -26,42 +37,14 @@ socket.on("marker", data => {
     addPolylineToMap(map);
 });
 
+
+
+
 // Make a empty array with the locations of the markers
 let markerLocation = [];
 let calculatedTotalDistance = 0;
+const markers = [];
 
-// Adding events to buttons
-const newBtn = document.getElementById("new-btn")
-newBtn.addEventListener("click", event => {
-    markerLocation = [];
-})
-
-let color = 'red'
-
-const redBtn = document.getElementById("red-btn");
-redBtn.addEventListener("click", event => {
-    color = 'red'
-});
-const pinkBtn = document.getElementById("pink-btn");
-pinkBtn.addEventListener("click", event => {
-    color = '#c96bff'
-});
-const blueBtn = document.getElementById("blue-btn");
-blueBtn.addEventListener("click", event => {
-    color = 'blue'
-});
-const greenBtn = document.getElementById("green-btn");
-greenBtn.addEventListener("click", event => {
-    color = '#03fc41'
-});
-const yellowBtn = document.getElementById("yellow-btn");
-yellowBtn.addEventListener("click", event => {
-    color = 'yellow'
-});
-const blackBtn = document.getElementById("black-btn");
-blackBtn.addEventListener("click", event => {
-    color = 'black'
-});
 
 // Adding a marker on the place where the users clicks
 map.addEventListener("tap", event => {
@@ -77,7 +60,6 @@ map.addEventListener("tap", event => {
     socket.emit("marker", position);
 });
 
-
 // Add a marker to the map and the markerLocations array
 function addMarkerToMap(position) {
     const marker = new H.map.Marker(position);
@@ -90,6 +72,28 @@ function addMarkerToMap(position) {
         longitude
     });
 }
+
+function addPolylineToMap(map) {
+    const lineString = new H.geo.LineString();
+    markerLocation.forEach(location => {
+        lineString.pushPoint({
+            lat: location.latitude,
+            lng: location.longitude
+        });
+    })
+
+    map.addObject(new H.map.Polyline(
+        lineString, {
+            style: {
+                lineWidth: 4,
+                strokeColor: randomColor
+            }
+        }
+    ));
+}
+
+const colors = ["red", "orange", "yellow", "lightgreen", "green", "blue", "darkblue", "purple", "violet", "black", "grey"];
+let randomColor = colors[Math.floor(Math.random() * colors.length)];
 
 function calculateDistance() {
     const markerLength = markerLocation.length;
@@ -105,29 +109,6 @@ function calculateDistance() {
     })
 }
 
-
-// Add lines between the marker
-function addPolylineToMap(map) {
-    const lineString = new H.geo.LineString();
-    markerLocation.forEach(location => {
-        lineString.pushPoint({
-            lat: location.latitude,
-            lng: location.longitude
-        });
-    })
-
-    map.addObject(new H.map.Polyline(
-        lineString, {
-            style: {
-                lineWidth: 4,
-                strokeColor: color
-            }
-        }
-    ));
-}
-
-console.log('markerarray', markerLocation)
-console.log('afstand in km', getDistanceFromLatLonInKm(37.7397, -121.4252, 37.9577, -121.2908));
 
 function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
     var R = 6371; // Radius of the earth in km

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -26,14 +26,35 @@
   </div>
   <div id="map"></div>
   <div id="panel"></div>
-  <script src="https://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
-  <script src="https://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8">
-  </script>
-  <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
-  <script src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js" type="text/javascript" charset="utf-8">
-  </script>
-  <script defer src="/socket.io/socket.io.js"></script>
+  <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+
   <script defer src="client.js"></script>
+
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+
+<body style="margin: 5vw;">
+
+  <button id="new-btn"> Draw new route</button>
+
+  <button id="black-btn"> 5 - 10 km</button>
+  <button id="black-btn"> 10 - 15 km</button>
+  <button id="black-btn"> > 15 km </button>
+
+  <div id="map" style="width: 100vw; height: 100vh;"></div>
+  <script defer src="http://localhost:8181/socket.io/socket.io.js"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+  <script src="client.js"></script>
 </body>
 
 </html>
