@@ -1,5 +1,8 @@
 const socket = io('http://localhost:8181');
 
+
+
+
 const platform = new H.service.Platform({
     "apikey": "fz16h8uAyopsUA8WDaso",
     "app_code": "APP_CODE_HERE"
@@ -17,34 +20,56 @@ const map = new H.Map(
     }
 );
 
-const mapEvent = new H.mapevents.MapEvents(map);
-const behavior = new H.mapevents.Behavior(mapEvent);
+// Get the data from the other clients
+// const anotherMarkerLocation = [];
+// Make a empty array with the locations of the markers
+let markerLocation = [];
 
-// Get an event with data from the server on the client
-// socket.on("message", data => {
-//     console.log('hello world', data);
-// })
+socket.on("draw-route", position => {
+    // const marker = new H.map.Marker(position);
+    // map.addObject(marker);
 
-// .emit sends information from the client to the server
-// const testMessage = "Hi, send this to the server";
-// socket.emit("test-message", testMessage)
+    // let latitude = position.lat;
+    // let longitude = position.lng;
+    // anotherMarkerLocation.push({
+    //     latitude,
+    //     longitude
+    // });
 
+    // console.log("another array", anotherMarkerLocation)
 
-// Draw a marker when the users "taps"
-socket.on("marker", data => {
+    // const lineString = new H.geo.LineString();
+    // anotherMarkerLocation.forEach(location => {
+    //     lineString.pushPoint({
+    //         lat: location.latitude,
+    //         lng: location.longitude
+    //     });
+    // })
 
-    addMarkerToMap(data);
+    // map.addObject(new H.map.Polyline(
+    //     lineString, {
+    //         style: {
+    //             lineWidth: 4,
+    //             strokeColor: "blue"
+    //         }
+    //     }
+    // ));
+
+    console.log("andere data", position)
+    addMarkerToMap(position);
     addPolylineToMap(map);
 });
 
+const mapEvent = new H.mapevents.MapEvents(map);
+const behavior = new H.mapevents.Behavior(mapEvent);
 
 
-
-// Make a empty array with the locations of the markers
-let markerLocation = [];
 let calculatedTotalDistance = 0;
-const markers = [];
 
+const drawNewRouteBtn = document.getElementById("new-btn");
+drawNewRouteBtn.addEventListener("click", event => {
+    markerLocation = []
+})
 
 // Adding a marker on the place where the users clicks
 map.addEventListener("tap", event => {
@@ -52,18 +77,17 @@ map.addEventListener("tap", event => {
         event.currentPointer.viewportX,
         event.currentPointer.viewportY
     );
-    console.log('markerlocaitons', markerLocation)
-
     addMarkerToMap(position);
     addPolylineToMap(map);
     calculateDistance();
-    socket.emit("marker", position);
+    socket.emit("draw-route", position);
 });
 
 // Add a marker to the map and the markerLocations array
 function addMarkerToMap(position) {
     const marker = new H.map.Marker(position);
     map.addObject(marker);
+    console.log("dit de positie", position)
 
     let latitude = position.lat;
     let longitude = position.lng;
