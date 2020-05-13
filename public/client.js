@@ -1,6 +1,8 @@
 const socket = io('http://localhost:8181');
 
-
+// socket.on("welcome", data => {
+//     console.log("received welcome data", data)
+// })
 
 
 const platform = new H.service.Platform({
