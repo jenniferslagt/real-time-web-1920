@@ -9,27 +9,32 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
 
+// const markers = [];
+// const randomColor
 
-const markers = [];
+// Add a namespace which assigns different endpoints or paths. 
+// Within this namespace, you can add channels to separate or minimalize the number of TCP connections
+// You can define different channels that sockets can join and leave within the namespace
+// Use .to to broadcast or emit messages
+
+// create a namespace with the .of method and set up a connection
+// io.of('/noord-holland').on("connection", socket => {
+//     console.log("a user connected on noord-holland", socket.id);
+//     socket.emit("welcome", "hello and welcome")
+// })
 
 // Make a event when a user is connected
 io.on("connection", socket => {
 
-    // the event name is "message" en het output is hello world
-    // socket.emit("message", "hello world")
-
-    // get the event with the data from the client on the server
-    // socket.on("test-message", message => {
-    //     console.log("This is the test message", message)
+    // socket.on("join-room", room => {
+    //     socket.join(room)
     // })
+    console.log("a new user connected", socket.id)
 
-    for (let i = 0; i < markers.length; i++) {
-        socket.emit("marker", markers[i]);
-    }
-    socket.on("marker", data => {
-        markers.push(data);
-        io.emit("marker", data);
+    socket.on("draw-route", position => {
+        socket.broadcast.emit("draw-route", position);
     });
+
 });
 
 
