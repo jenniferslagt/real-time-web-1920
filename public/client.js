@@ -1,4 +1,4 @@
-const socket = io('http://localhost:8181');
+const socket = io('http://localhost:5555');
 
 const platform = new H.service.Platform({
     "apikey": "fz16h8uAyopsUA8WDaso",
@@ -43,7 +43,6 @@ console.log("hai dit is een message voor een check")
 // Make a empty array with the locations of the markers
 let markerLocation = [];
 let calculatedTotalDistance = 0;
-const markers = [];
 
 
 // Adding a marker on the place where the users clicks
@@ -86,14 +85,11 @@ function addPolylineToMap(map) {
         lineString, {
             style: {
                 lineWidth: 4,
-                strokeColor: randomColor
+                strokeColor: "red"
             }
         }
     ));
 }
-
-const colors = ["red", "orange", "yellow", "lightgreen", "green", "blue", "darkblue", "purple", "violet", "black", "grey"];
-let randomColor = colors[Math.floor(Math.random() * colors.length)];
 
 function calculateDistance() {
     const markerLength = markerLocation.length;
