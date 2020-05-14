@@ -1,4 +1,6 @@
-const socket = io('http://localhost:5555');
+// const socket = io('http://localhost:5555');
+const socket = io('https://draw-your-route-app.herokuapp.com/');
+
 
 const platform = new H.service.Platform({
     "apikey": "fz16h8uAyopsUA8WDaso",
