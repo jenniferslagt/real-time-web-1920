@@ -49,14 +49,24 @@
   <button id="black-btn"> > 15 km </button>
 
   <div id="map" style="width: 100vw; height: 100vh;"></div>
-  <script defer src="http://localhost:5555/socket.io/socket.io.js"></script>
+  <script defer src="https://draw-your-route-app.herokuapp.com//socket.io/socket.io.js"></script>
   <!-- <script defer src="https://draw-your-route-app.herokuapp.com/"></script> -->
 
-  <script src="./library/mapsjs-core.js"></script>
+  <!-- <script src="./library/mapsjs-core.js"></script>
   <script src="./library/mapjs-service.js"></script>
   <script src="./library/mapsjs-mapevents.js"></script>
   <script src="./library/socket.io.js">
+  </script> -->
+  <script src="https://cors-anywhere.herokuapp.com/http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="https://cors-anywhere.herokuapp.com/http://js.api.here.com/v3/3.0/mapsjs-service.js"
+    type="text/javascript" charset="utf-8"></script>
+  <script src="https://cors-anywhere.herokuapp.com/http://js.api.here.com/v3/3.0/mapsjs-mapevents.js"
+    type="text/javascript" charset="utf-8"></script>
+  <script src="https://cors-anywhere.herokuapp.com/http://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js">
   </script>
+
+
   <script src="client.js"></script>
 </body>
 
