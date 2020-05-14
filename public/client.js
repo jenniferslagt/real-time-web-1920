@@ -33,10 +33,14 @@ const behavior = new H.mapevents.Behavior(mapEvent);
 
 // Draw a marker when the users "taps"
 socket.on("draw-route", data => {
-
     addMarkerToMap(data);
     addPolylineToMap(map);
+
+    io.on("draw-another-route", data => {
+        console.log("de userlist?", data)
+    })
 });
+
 
 
 console.log("hai dit is een message voor een check")
