@@ -36,10 +36,10 @@ socket.on("draw-route", data => {
     addMarkerToMap(data);
     addPolylineToMap(map);
 
-    io.on("draw-another-route", data => {
-        console.log("de userlist?", data)
-    })
-    console.log("userlist? ", data)
+    // io.on("draw-another-route", data => {
+    //     console.log("de userlist?", data)
+    // })
+    // console.log("userlist? ", data)
 });
 
 
