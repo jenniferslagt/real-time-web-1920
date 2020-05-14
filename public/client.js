@@ -1,4 +1,4 @@
-const socket = io('https://draw-your-route-app.herokuapp.com/');
+const socket = io();
 
 
 const platform = new H.service.Platform({
@@ -39,6 +39,7 @@ socket.on("draw-route", data => {
     io.on("draw-another-route", data => {
         console.log("de userlist?", data)
     })
+    console.log("userlist? ", data)
 });
 
 
