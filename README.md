@@ -1,5 +1,5 @@
 ## Draw Your Route App
-![Schermafbeelding 2020-04-21 om 11 32 16](https://user-images.githubusercontent.com/45489420/79850128-c1b5cd00-83c3-11ea-946b-e4d46a933bd0.png)
+![Schermafbeelding 2020-05-15 om 10 51 54](https://user-images.githubusercontent.com/45489420/82031377-1afade80-969a-11ea-9e6b-c4aba28464ea.png)
 
 ## Description
 What if you could draw and ride figures on a map, based on the roads? This is the idea behind my app. A user can draw a route on the map. Thereafter, he can cycle his self-made route! How do you draw a route? If the user clicks on the map, a marker gets displayed. If a second marker is displayed, there will be a polyline between those markers, which creates a route. So you actually have to display a marker by every intersection to accomplish this.
@@ -38,17 +38,17 @@ This are the features that I used:
 
 
 ## Real-time events
-If users are going to the app, they actually join each other in the same map. This are the real-time events that happen:
-* Users can display markers by clicking on the map.
-* Users can display polylines by adding more than one marker to the map.
-* The user can change the color of the polylines
-* The distance of the route is calculated and changes if the user adds markers.
+If users are going to the app, they actually join each other in the same map, or let's say, the same room. They can also change the room type based on their preferences. This are the real-time events:
 
+* <b>"joinRoom"</b>: This event determines the room of the sockets based on their preferences. The socket chooses the room on the client en this gets sends to the server.
+* <b>"draw-route"</b>: This event sends the markers from the socket between the server and client. It's getting stored in the server and then it's send to all the connected clients.
+* <b>"random-color"</b>: I made a color generater which sends a random color to a connected server.
 
 ## Data life cycle
-I made a data life cycle to show how the data flows through my app. In this way, it can be easier to understand what happens with the data:
+I made a data life cycle to show how the data flows through my app. In this way, it can be easier to understand what happens with the data. In this data model you'll see which information is stored. 
+The cycle shows how to information "flows" through the app. Based on the user events (rooms), it's determined which data goes to which client. 
 <br>
-![data](https://user-images.githubusercontent.com/45489420/79700623-566edc80-8297-11ea-9e2b-df8e2d335720.png)
+![datalifecycle](https://user-images.githubusercontent.com/45489420/82030669-09fd9d80-9699-11ea-8025-f95e3410f6b5.png)
 
 ## Wishlist
 * Add an undo / delete button
