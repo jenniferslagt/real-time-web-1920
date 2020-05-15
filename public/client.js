@@ -1,6 +1,72 @@
-const socket = io();
+const drawRoute = "http://localhost:3333/drawroute"
+const localhost = "http://localhost:3333"
+const socket = io(drawRoute);
+// to show the content of the namespace, add the name of the space after the path
+// for example: const socket = io("http://localhost:5555/games");
+
+// Let the user choose what kind of route they want to draw
+let room;
+
+const walkRouteRoom = "walking route";
+const cycleRouteRoom = "cycle route";
+const carRouteRoom = "car route";
+
+const roomContainer = document.getElementById("room-container")
+const walkRoomBtn = document.getElementById("walk-room")
+const cycleRoomBtn = document.getElementById("cycle-room")
+const carRoomBtn = document.getElementById("car-room")
+
+if (walkRoomBtn.checked == true) {
+    room = walkRouteRoom;
+} else if (cycleRoomBtn.checked == true) {
+    room = cycleRouteRoom;
+} else {
+    room = carRouteRoom;
+}
+
+const headingTwo = document.querySelector("h2");
+headingTwo.innerText = "I would like to do a .. " + room;
+
+// choose which you the sockets wants to join by adding the name after the event
+let chosenRoom = JSON.stringify(room)
+socket.emit("joinRoom", "car route")
+console.log("chosen room:", chosenRoom)
+
+socket.on("newUser", res => {
+    console.log("new user", res)
+})
+
+socket.on("err", error => {
+    console.log("error:", error)
+})
+
+socket.on("succes", res => {
+    console.log("succes", res)
+})
+
+let array = [];
+
+// Draw a route 
+socket.on("draw-route", data => {
+    // array.push(data);
+    addMarkerToMap(data);
+
+    addPolylineToMap(map);
+
+});
+
+// Import the user list from the server
+socket.on("user-list", list => {
+    console.log("User list", list)
+    let markerPositions = list.map(element => {
+        // Get the list with markerpositions
+        return element.markerList
+    });
+    console.log("nieuwe list?", markerPositions)
+})
 
 
+// Use your key to acces the API
 const platform = new H.service.Platform({
     "apikey": "fz16h8uAyopsUA8WDaso",
     "app_code": "APP_CODE_HERE"
@@ -18,52 +84,29 @@ const map = new H.Map(
     }
 );
 
+// Give acces to zoom in or out
 const mapEvent = new H.mapevents.MapEvents(map);
 const behavior = new H.mapevents.Behavior(mapEvent);
 
-// Get an event with data from the server on the client
-// socket.on("message", data => {
-//     console.log('hello world', data);
-// })
-
-// .emit sends information from the client to the server
-// const testMessage = "Hi, send this to the server";
-// socket.emit("test-message", testMessage)
-
-
-// Draw a marker when the users "taps"
-socket.on("draw-route", data => {
-    addMarkerToMap(data);
-    addPolylineToMap(map);
-
-    // io.on("draw-another-route", data => {
-    //     console.log("de userlist?", data)
-    // })
-    // console.log("userlist? ", data)
-});
-
-
-
-console.log("hai dit is een message voor een check")
-
 // Make a empty array with the locations of the markers
 let markerLocation = [];
-let calculatedTotalDistance = 0;
 
-
-// Adding a marker on the place where the users clicks
 map.addEventListener("tap", event => {
     const position = map.screenToGeo(
         event.currentPointer.viewportX,
         event.currentPointer.viewportY
     );
-    console.log('markerlocaitons', markerLocation)
-
     addMarkerToMap(position);
     addPolylineToMap(map);
     calculateDistance();
     socket.emit("draw-route", position);
+    socket.emit("marker-list-user", markerLocation)
+
+    const selectParagraph = document.getElementById("distance");
+    selectParagraph.innerText = "Your roadtrip will be " +
+        calculatedTotalDistance + " km!";
 });
+
 
 // Add a marker to the map and the markerLocations array
 function addMarkerToMap(position) {
@@ -78,6 +121,11 @@ function addMarkerToMap(position) {
     });
 }
 
+socket.on("random-color", color => {
+    console.log("color", color)
+})
+
+// Add lines between the markers
 function addPolylineToMap(map) {
     const lineString = new H.geo.LineString();
     markerLocation.forEach(location => {
@@ -97,21 +145,23 @@ function addPolylineToMap(map) {
     ));
 }
 
+// Make a variable which is calculating the route in km
+let calculatedTotalDistance = 0;
+
 function calculateDistance() {
     const markerLength = markerLocation.length;
-    console.log(markerLength)
     markerLocation.map((distance, index) => {
         // console.log('check deze', distance, index)
         if (index < markerLength - 1) {
             const currentDistance = distance;
             const nextDistance = markerLocation[index + 1];
             calculatedTotalDistance += getDistanceFromLatLonInKm(currentDistance.latitude, currentDistance.longitude, nextDistance.latitude, nextDistance.longitude);
-            console.log(calculatedTotalDistance);
+            console.log("Total distance:", calculatedTotalDistance + "km");
         }
     })
 }
 
-
+// calculate the distance based on the position of the markers
 function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
     var R = 6371; // Radius of the earth in km
     var dLat = deg2rad(lat2 - lat1); // deg2rad below
@@ -125,6 +175,7 @@ function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
     return Math.round(Number(d.toFixed(1)) + 1)
 }
 
+// Short formule which calculates the circle (arc) of the earth
 function deg2rad(deg) {
     return deg * (Math.PI / 180)
 }
