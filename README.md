@@ -68,5 +68,3 @@ The cycle shows how to information "flows" through the app. Based on the user ev
 ## Credits
 In the past weeks we all worked from home, because of the virus. This makes it harder to communicate and to concentrate on your work. That's why I would like to thank my fellow students, the help students and the teachers for helping me during this time.
 
-## Video of the demo
-I don't have a link to the live preview, but I made a small video of my real time app:
